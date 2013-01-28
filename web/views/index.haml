@@ -1,0 +1,21 @@
+%h2 GET '/' 
+%h3 Params
+%ul
+  %li
+    %strong provider (optional):
+    %ul
+      %li all (default)
+      %li cdnjs
+      %li google
+      %li microsoft
+
+%p Gets the latest library for a provider. If there's none, it will throw a 404.
+
+%h3 Example
+%code ➜  curl http://localhost:4567 -H "Accept: application/json" -H "Content-type: application/json"
+
+%p Response:
+%code
+  {"cdnjs":"1140","960gs":"ace","alloy-ui":"amplifyjs","angular.js":"async","augment.js":"backbone-localstorage.js","backbone-relational":"backbone.eventbinder","backbone.js":"backbone.layoutmanager","backbone.marionette":"backbone.modelbinder","backbone.paginator":"backbone.syphon","backbone.validation":"backbone.wreqr","benchmark":"bonsai","bootstrap-growl":"bootstrap-lightbox","camanjs":"can.js","cannon.js":"chosen","chrome-frame":"coffee-script","cookiejar":"crafty","crossroads":"css3finalize","css3pie":"cufon","d3":"dancer.js","dat-gui":"datatables","datatables-fixedheader":"datejs","davis.js":"dd_belatedpng","documentup":"dojo","dollar.js":"dropbox.js","dygraph":"embedly-jquery","ember-data.js":"ember.js","enquire.js":"epiceditor","es5-shim":"eve.js","eventmaster":"ext-core","fancybox":"file-uploader","firebug-lite":"fitvids","flexie":"flot","font-awesome":"foundation","galleria":"garlic.js","gas":"geo-location-javascript","gmaps.js":"gmaps4rails","graphael":"handlebars.js","hashgrid":"headjs","highcharts":"highlight.js","hinclude":"history.js","hogan.js":"html5shiv","humane-js":"ICanHaz.js","impress.js":"jade","javascript-state-machine":"jo","jplayer":"jqModal","jquery":"jquery-ui","jquery-cookie":"jquery-countdown","jquery-easing":"jquery-gamequery","jquery-hashchange":"jquery-history","jquery-infinitescroll":"jquery-jcrop","jquery-migrate":"jquery-mobile","jquery-mockjax":"jquery-mousewheel","jquery-nivoslider":"jquery-noty","jquery-powertip":"jquery-scrollTo","jquery-sparklines":"jquery-textext","jquery-throttle-debounce":"jquery-timeago","jquery-tools":"jquery-url-parser","jquery-validate":"jquery.activity-indicator","jquery.address":"jquery.ba-bbq","jquery.caroufredsel":"jquery.colorbox","jquery.cycle":"jquery.form","jquery.formalize":"jquery.imagesloaded","jquery.lazyload":"jquery.lifestream","jquery.nanoscroller":"jquery.selectboxit","jquery.socialshareprivacy":"jquery.SPServices","jquery.tablesorter":"jquery.touchswipe","jquery.transit":"jqueryui","jqueryui-touch-punch":"js-signals","js-url":"jScrollPane","json2":"json3","jsoneditor":"jStorage","jsxgraph":"kerning.js","kineticjs":"kiwi","knockout":"knockout.mapping","labjs":"lazyload","leaflet":"less.js","lodash.js":"log4javascript","masonry":"meyer-reset","mo":"mobilizejs","modernizr":"moment.js","mootools":"prototype","morris.js":"mousetrap","mustache.js":"ninjaui","noisy":"normalize","numeral.js":"ocanvas","openajax-hub":"openlayers","oz.js":"pagedown","paper.js":"path.js","pie":"piwik","placeholder-shiv":"platform","postal.js":"prefixfree","prettify":"processing.js","prototype":"psd.js","pubnub":"punycode","pusher":"qooxdoo","qtip2":"qunit","rainbow":"raphael","raven.js":"remoteStorage","require-cs":"require-domReady","require-i18n":"require-jquery","require-text":"require.js","respond.js":"ResponsiveSlides.js","retina.js":"reveal.js","rickshaw":"sammy.js","scion":"script.js","scriptaculous":"swfobject","select2":"selectivizr","showdown":"shred","simplecartjs":"sizzle","socket.io":"sockjs-client","sopa":"spin.js","spinejs":"stacktrace.js","stapes":"stats.js","stellar.js":"store.js","string.js":"string_score","sugar":"swfobject","swipe":"sylvester","SyntaxHighlighter":"thorax","three.js":"tinycon","tinyscrollbar":"treesaver","tweenjs":"tweet","twitter-bootstrap":"twitterlib.js","underscore.js":"underscore.string","URI.js":"use.js","vertx":"visibility.js","waypoints":"webfont","wysihtml5":"xregexp","xuijs":"yepnope","yui":"zepto","zxcvbn":"google","angularjs":"chrome-frame","dojo":"ext-core","webfont":"microsoft"}
+
+= haml :latest

@@ -1,0 +1,22 @@
+%h2 GET '/latest/:library' 
+%h3 Params
+%ul
+  %li
+    %strong library:
+    whatever library you want to get.
+%ul
+  %li
+    %strong provider (optional):
+    %ul
+      %li all (default)
+      %li cdnjs
+      %li google
+      %li microsoft
+
+%p Gets the latest library for a provider. If there's none, it will throw a 404.
+
+%h3 Example
+%code ➜  curl http://localhost:4567/latest/jquery -H "Accept: application/json" -H "Content-type: application/json"
+
+%p Response:
+%code {"cdnjs":{"name":"jquery","latest_version":"1.9.0","url":"//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"},"google":{"name":"jquery","latest_version":"1.9.0","url":"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"}}
