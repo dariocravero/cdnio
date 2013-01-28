@@ -38,3 +38,4 @@ TODO: Write usage instructions here
 * Add funky selectors such as \*.
 * Add the ability to get more than one library at a time.
 * Add the ability to choose a bunch of providers too.
+* Refresh providers after a while?
