@@ -1,19 +1,20 @@
 module CDNio
   module Providers
     class Cdnjs < Base 
-      URL = 'http://cdnjs.com' 
+      URL = 'http://cdnjs.com/packages.json' 
+      BASE_URL = '//cdnjs.cloudflare.com/ajax/libs'
 
       private 
         def fetch
-          super(URL) do |doc|
-            @libraries = doc.css('.packages-table-container tbody tr').map do |library|
-              tds = library.css('td')
+          require 'open-uri'
+          require 'json'
 
-              {:name => tds.first.at_css('a').text,
-               :latest_version => tds[1].at_css('.version h3').text,
-               :url => tds[1].xpath('text()').text.strip}
-            end
+          @libraries = JSON.parse(open(URL).read)['packages'].map do |package|
+            {:name => package['name'],
+             :latest_version => package['version'],
+             :url => "#{BASE_URL}/#{package['name']}/#{package['version']}/#{package['filename']}"}
           end
+          self
         end
     end # Cdnjs
   end # Providers

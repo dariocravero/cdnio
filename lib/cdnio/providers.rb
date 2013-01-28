@@ -8,19 +8,8 @@ module CDNio
 
       def libraries
         fetch unless @libraries
-        @libraries.collect { |l| l[:name] }
+        @libraries
       end
-
-      private 
-        def fetch(url)
-          return unless block_given?
-
-          require 'nokogiri'
-          require 'open-uri'
-          yield Nokogiri::HTML(open(url))
-
-          self
-        end
     end # Base
   end # Providers
 end # CDNio

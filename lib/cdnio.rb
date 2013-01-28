@@ -32,11 +32,18 @@ module CDNio
     def libraries(provider = :all)
       provider = provider.to_sym
       raise UnsupportedProviderException, provider unless (PROVIDERS.include?(provider) || provider == :all)
-      get_missing
+      if provider == :all
+        get_missing 
 
-      Hash[*PROVIDERS.map do |prov|
-        [prov, @providers[prov].libraries]
-      end.flatten.compact]
+        Hash[*PROVIDERS.map do |prov|
+          libraries = @providers[prov].libraries
+          [prov, libraries] unless libraries.empty?
+        end.flatten(1).compact]
+      else
+        get_provider(provider)
+
+        @providers[provider].libraries
+      end
     end
 
     private

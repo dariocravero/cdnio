@@ -15,8 +15,16 @@
 
 %p Gets the latest library for a provider. If there's none, it will throw a 404.
 
-%h3 Example
-%code ➜  curl http://cdnio.uxtemple.com/latest/jquery -H "Accept: application/json" -H "Content-type: application/json"
+%h3 Examples 
 
+%strong
+  %code ➜  curl http://cdnio.uxtemple.com/latest/jquery -H "Accept: application/json" -H "Content-type: application/json"
 %p Response:
-%code {"cdnjs":{"name":"jquery","latest_version":"1.9.0","url":"//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"},"google":{"name":"jquery","latest_version":"1.9.0","url":"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"}}
+%code=File.read(File.join(File.dirname(__FILE__), 'jquery.out')) 
+
+%br
+%br
+%strong
+  %code ➜  curl http://cdnio.uxtemple.com/latest/jquery\?provider\=cdjns -H "Accept: application/json" -H "Content-type: application/json"
+%p Response:
+%code=File.read(File.join(File.dirname(__FILE__), 'jquery-cdnjs.out')) 

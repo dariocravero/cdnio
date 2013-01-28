@@ -11,7 +11,7 @@ module CDNio
 
     get '/', :provides => [:json, :html] do
       if content_type =~ /json/
-        settings.cdn.libraries(params.include?(:provider) ? params[:provider] : :all).to_json
+        settings.cdn.libraries(params.include?('provider') ? params['provider'] : :all).to_json
       elsif content_type =~ /html/
         haml :index
       end
