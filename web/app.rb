@@ -2,33 +2,44 @@ require 'sinatra'
 require 'haml'
 require 'json'
 require 'cdnio'
+require 'moneta'
 
 module CDNio 
   class WebApp < Sinatra::Application
     set :cdn, CDN.new
     set :layout, :layout
-    set :format, :html5
+    set :haml, :format => :html5, :ugly => ENV['RACK_ENV'] == 'production'
+    set :cache, Moneta.new(:Memory)
+
+    def cached(key)
+      settings.cache[key] = yield unless settings.cache.key?(key)
+      settings.cache[key]
+    end
 
     get '/', :provides => [:json, :html] do
       if content_type =~ /json/
-        settings.cdn.libraries(params.include?('provider') ? params['provider'] : :all).to_json
+        cached(provider = params.include?('provider') ? params['provider'] : :all) do
+          settings.cdn.libraries(provider).to_json
+        end
       elsif content_type =~ /html/
-        haml :index
+        cached(:index) do
+          haml :index
+        end
       end
     end
 
     get '/latest/:library', :provides => [:json, :html] do
       if content_type =~ /json/
-        library = params[:library]
         provider = params.include?('provider') ? params['provider'] : :all
+        library = params[:library]
 
-        latest = settings.cdn.latest(library, provider)
-
-        halt 404, {:error => "Couldn't find #{library} #{provider == :all ? 'at all' : %{in #{provider}}}."}.to_json if latest.nil?
-
-        latest.to_json
+        cached("#{provider}_#{library}") do
+          settings.cdn.latest(library, provider).to_json
+        end
       elsif content_type =~ /html/
-        haml :latest
+        cached(:latest) do
+          haml :latest
+        end
       end
     end
 

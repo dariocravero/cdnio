@@ -3,4 +3,5 @@ source :rubygems
 gem 'cdnio'
 gem 'haml'
 gem 'puma'
+gem 'moneta'
 gem 'sinatra'
