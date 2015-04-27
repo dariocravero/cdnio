@@ -1,4 +1,4 @@
-# CDN.io 
+# CDN.io ![downloads](https://img.shields.io/gem/dt/cdnio.svg)
 
 CDN.io is there to always give you get the latest version of hosted JavaScript libraries on public CDNs, programatically.
 
